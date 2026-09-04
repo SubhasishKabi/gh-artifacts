@@ -25,6 +25,14 @@ jobs:
         run: npm ci
       - name: Build website
         run: npm run build
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: |
+            dist
+            package.json
+  # path tells us which file to upload as an artifact. In this case, we are uploading the 'dist' directory and the 'package.json' file as build artifacts.
   deploy:
     needs: build
     runs-on: ubuntu-latest
